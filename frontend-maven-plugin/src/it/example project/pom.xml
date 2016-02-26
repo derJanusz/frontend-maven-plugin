@@ -89,6 +89,16 @@
                         </configuration>
                     </execution>
 
+                    <execution>
+                        <id>execute other node modules</id>
+                        <goals>
+                            <goal>node</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>--version</arguments>
+                        </configuration>
+                    </execution>
+
                 </executions>
             </plugin>
         </plugins>

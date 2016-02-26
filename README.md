@@ -263,6 +263,23 @@ By default, colors will be shown in the log.
     </configuration>
 </execution>
 ```
+
+### Running node
+```xml
+<execution>
+    <id>node module</id>
+    <goals>
+        <goal>node</goal>
+    </goals>
+
+    <!-- optional: the default phase is "generate-resources" -->
+    <phase>generate-resources</phase>
+
+    <configuration>
+        <arguments>--version</arguments>
+    </configuration>
+</execution>
+```
 __Skipping tests:__ If you run maven with the `-DskipTests` flag, karma tests will be skipped.
 
 __Ignoring failed tests:__ If you want to ignore test failures run maven with the `-Dmaven.test.failure.ignore` flag, karma test results will not stop the build but test results will remain

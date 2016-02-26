@@ -56,6 +56,10 @@ public final class FrontendPluginFactory {
         return new InstallNodeExecutorConfig(getInstallConfig());
     }
 
+    public NodeRunner getNodeRunner(){
+        return new DefaultNodeRunner(getExecutorConfig());
+    }
+
     private InstallConfig getInstallConfig() {
         return new DefaultInstallConfig(installDirectory, workingDirectory, defaultPlatform);
     }

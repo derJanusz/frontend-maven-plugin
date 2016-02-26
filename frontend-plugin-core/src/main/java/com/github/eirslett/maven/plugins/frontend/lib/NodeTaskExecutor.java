@@ -50,12 +50,18 @@ abstract class NodeTaskExecutor {
 
 
     public final void execute(String args, Map<String, String> environment) throws TaskRunnerException {
-        final String absoluteTaskLocation = getAbsoluteTaskLocation();
-        final List<String> arguments = getArguments(args);
+        List<String> arguments = null;
+        if (taskLocation != null){
+            final String absoluteTaskLocation = getAbsoluteTaskLocation();
+            arguments = prepend(absoluteTaskLocation, getArguments(args));
+        } else {
+            arguments = getArguments(args);
+        }
+
         logger.info("Running " + taskToString(taskName, arguments) + " in " + config.getWorkingDirectory());
 
         try {
-            final int result = new NodeExecutor(config, prepend(absoluteTaskLocation, arguments), environment).executeAndRedirectOutput(logger);
+            final int result = new NodeExecutor(config, arguments, environment).executeAndRedirectOutput(logger);
             if (result != 0) {
                 throw new TaskRunnerException(taskToString(taskName, arguments) + " failed. (error code " + result + ")");
             }
